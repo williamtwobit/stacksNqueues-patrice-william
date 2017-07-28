@@ -1,6 +1,7 @@
-const createNode = (data = null, next = null) => ({
+const createNode = (data = null, next = null, prev = null) => ({
   data,
-  next
+  next,
+  prev
 });
 
 class Stack {
@@ -41,7 +42,30 @@ function display(stack) {
   }
 }
 
-///// INVOKING AND LOGGING ////
+class Queue{
+  constructor(){
+    this.first = null;
+    this.last = null;
+  }
+
+  enqueue(data){
+    const node = createNode(data);
+
+    if(this.last){
+      node.next = this.last;
+      this.last.prev = node;
+    }
+    this.last = node;
+
+    if(this.first === null){
+      this.first = node;
+    }
+  }
+}
+
+
+///// INVOKING AND LOGGING STACK OPERATIONS ////
+console.log('////////////////STACK OPERATIONS////////////////');
 const myStack = new Stack;
 
 myStack.push('hi there!');
@@ -52,3 +76,18 @@ console.log('pop', myStack.pop());
 console.log('peek', peek(myStack));
 console.log('stack', myStack);
 display(myStack);
+
+console.log('///////////////////////////');
+console.log('');
+console.log('');
+
+///// INVOKING AND LOGGING QUEUE OPERATIONS ////
+console.log('////////////////QUEUE OPERATIONS////////////////');
+
+const myQ = new Queue;
+
+myQ.enqueue("i'm first");
+myQ.enqueue("i'm second");
+myQ.enqueue("i'm last");
+
+console.log(myQ);
