@@ -85,34 +85,77 @@ function displayQ(queue) {
   }
 }
 
+/// EXERCISE #1 - PALINDROMES ///
 
-///// INVOKING AND LOGGING STACK OPERATIONS ////
-console.log('////////////////STACK OPERATIONS////////////////');
-const myStack = new Stack;
+function isPalindrome(string) {
+  string = string.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+  const palindromeStack = new Stack;
+  for(let i = 0; i < string.length; i++){
+    palindromeStack.push(string[i]);
+  }
+  for(let i = 0; i < string.length; i++){
+    if(!(palindromeStack.pop() === string[i])){
+      return false;
+    }
+  }
+  return true;
+}
 
-myStack.push('hi there!');
-myStack.push('goodbye');
-myStack.push('sing');
-myStack.push('dance');
-console.log('pop', myStack.pop());
-console.log('peek', peek(myStack));
-console.log('stack', myStack);
-display(myStack);
+// true, true, false, true
+console.log(isPalindrome("dad"));
+console.log(isPalindrome("A man, a plan, a canal: Panama"));
+console.log(isPalindrome('yikes'));
+console.log(isPalindrome("1001"));
 
-console.log('///////////////////////////');
-console.log('');
-console.log('');
 
-///// INVOKING AND LOGGING QUEUE OPERATIONS ////
-console.log('////////////////QUEUE OPERATIONS////////////////');
 
-const myQ = new Queue;
+/// EXERCISE #2 - MATCHING PARENTHESES ///
 
-myQ.enqueue("i'm first");
-myQ.enqueue("i'm second");
-myQ.enqueue("i'm last");
-// console.log('dequeue', myQ.dequeue());
-// console.log('dequeue', myQ.dequeue());
-// console.log('dequeue', myQ.dequeue());
-displayQ(myQ);
-console.log(myQ);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ///// INVOKING AND LOGGING STACK OPERATIONS ////
+// console.log('////////////////STACK OPERATIONS////////////////');
+// const myStack = new Stack;
+
+// myStack.push('hi there!');
+// myStack.push('goodbye');
+// myStack.push('sing');
+// myStack.push('dance');
+// console.log('pop', myStack.pop());
+// console.log('peek', peek(myStack));
+// console.log('stack', myStack);
+// display(myStack);
+
+// console.log('///////////////////////////');
+// console.log('');
+// console.log('');
+
+// ///// INVOKING AND LOGGING QUEUE OPERATIONS ////
+// console.log('////////////////QUEUE OPERATIONS////////////////');
+
+// const myQ = new Queue;
+
+// myQ.enqueue("i'm first");
+// myQ.enqueue("i'm second");
+// myQ.enqueue("i'm last");
+// // console.log('dequeue', myQ.dequeue());
+// // console.log('dequeue', myQ.dequeue());
+// // console.log('dequeue', myQ.dequeue());
+// displayQ(myQ);
+// console.log(myQ);
