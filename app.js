@@ -102,10 +102,10 @@ function isPalindrome(string) {
 }
 
 // true, true, false, true
-console.log(isPalindrome("dad"));
-console.log(isPalindrome("A man, a plan, a canal: Panama"));
-console.log(isPalindrome('yikes'));
-console.log(isPalindrome("1001"));
+// console.log(isPalindrome("dad"));
+// console.log(isPalindrome("A man, a plan, a canal: Panama"));
+// console.log(isPalindrome('yikes'));
+// console.log(isPalindrome("1001"));
 
 
 
@@ -136,13 +136,75 @@ function mathParens(string) {
 // myStack.push('(this is good)');
 // console.log(myStack);
 
-mathParens('((2*5)+6)');
+// mathParens('((2*5)+6)');
 //mathParens('(not okay))');
-mathParens('((trippin)');
+// mathParens('((trippin)');
+
+
+/// EXERCISE #3 - MATCHING DANCERS ///
+
+function dancerMatch(dancers){
+  const mQ = new Queue;
+  const fQ = new Queue;
+  let mCount = 0;
+  let fCount = 0;
+  for(let i = 0; i < dancers.length; i++){
+    if(dancers[i].gender === 'M'){
+      if(fQ.first !== null){
+        let femaleDancer = fQ.dequeue();
+        fCount--;
+        console.log(`Female dancer is: ${femaleDancer} and the male dancer is: ${dancers[i].name}`);
+      }
+      else{
+        mQ.enqueue(dancers[i].name);
+        mCount++;
+      }
+    }
+    if(dancers[i].gender === 'F'){
+      if(mQ.first !== null){
+        let maleDancer = mQ.dequeue();
+        mCount--;
+        console.log(`Female dancer is: ${dancers[i].name} and the male dancer is: ${maleDancer}`);
+      }
+      else{
+        fQ.enqueue(dancers[i].name);
+        fCount++;
+      }
+    }
+  }
+  while(fQ.first !== null){
+    if(mQ.first !== null){
+      let femaleDancer = fQ.dequeue();
+      fCount--;
+      let maleDancer = mQ.dequeue();
+      mCount--;
+      console.log(`Female dancer is: ${femaleDancer} and the male dancer is: ${maleDancer}`);
+    }
+    else{
+      console.log(`There are ${fCount} women waiting to dance`);
+      fQ.dequeue();
+    }
+  }
+  if(mCount > 0){
+    console.log(`There are ${mCount} men waiting to dance`);
+  }
+}
+
+const squareDancers = [
+  {gender:'M', name:'bob'},
+  {gender:'M', name:'chris'},
+  {gender:'F', name:'luna'},
+  {gender:'F', name:'sarah'},
+  {gender:'F', name:'hannah'},
+  {gender:'M', name:'geoff'},
+  {gender:'M', name:'larry'}
+];
+
+// dancerMatch(squareDancers);
 
 
 
-
+/// EXERCISE #4 - OPHIDIAN BANK ///
 
 
 
