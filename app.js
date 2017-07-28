@@ -42,24 +42,46 @@ function display(stack) {
   }
 }
 
-class Queue{
-  constructor(){
+class Queue {
+  constructor() {
     this.first = null;
     this.last = null;
   }
 
-  enqueue(data){
+  enqueue(data) {
     const node = createNode(data);
 
-    if(this.last){
+    if (this.last) {
       node.next = this.last;
       this.last.prev = node;
     }
     this.last = node;
 
-    if(this.first === null){
+    if (this.first === null) {
       this.first = node;
     }
+  }
+
+  dequeue() {
+    if (this.first === null) {
+      return;
+    }
+    const node = this.first;
+    this.first = node.prev;
+
+    if (node === this.last) {
+      this.last = null;
+    }
+
+    return node.data;
+  }
+}
+
+function displayQ(queue) {
+  let node = queue.first;
+  while (node !== null) {
+    console.log(node.data);
+    node = node.prev;
   }
 }
 
@@ -89,5 +111,8 @@ const myQ = new Queue;
 myQ.enqueue("i'm first");
 myQ.enqueue("i'm second");
 myQ.enqueue("i'm last");
-
+// console.log('dequeue', myQ.dequeue());
+// console.log('dequeue', myQ.dequeue());
+// console.log('dequeue', myQ.dequeue());
+displayQ(myQ);
 console.log(myQ);
