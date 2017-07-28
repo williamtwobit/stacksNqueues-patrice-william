@@ -143,61 +143,78 @@ function mathParens(string) {
 
 /// EXERCISE #3 - MATCHING DANCERS ///
 
-function dancerMatch(dancers){
+function dancerMatch(dancers) {
   const mQ = new Queue;
   const fQ = new Queue;
   let mCount = 0;
   let fCount = 0;
-  for(let i = 0; i < dancers.length; i++){
-    if(dancers[i].gender === 'M'){
-      if(fQ.first !== null){
+  for (let i = 0; i < dancers.length; i++) {
+    if (dancers[i].gender === 'M') {
+      if (fQ.first !== null) {
         let femaleDancer = fQ.dequeue();
         fCount--;
         console.log(`Female dancer is: ${femaleDancer} and the male dancer is: ${dancers[i].name}`);
-      }
-      else{
+      } else {
         mQ.enqueue(dancers[i].name);
         mCount++;
       }
     }
-    if(dancers[i].gender === 'F'){
-      if(mQ.first !== null){
+    if (dancers[i].gender === 'F') {
+      if (mQ.first !== null) {
         let maleDancer = mQ.dequeue();
         mCount--;
         console.log(`Female dancer is: ${dancers[i].name} and the male dancer is: ${maleDancer}`);
-      }
-      else{
+      } else {
         fQ.enqueue(dancers[i].name);
         fCount++;
       }
     }
   }
-  while(fQ.first !== null){
-    if(mQ.first !== null){
+  while (fQ.first !== null) {
+    if (mQ.first !== null) {
       let femaleDancer = fQ.dequeue();
       fCount--;
       let maleDancer = mQ.dequeue();
       mCount--;
       console.log(`Female dancer is: ${femaleDancer} and the male dancer is: ${maleDancer}`);
-    }
-    else{
+    } else {
       console.log(`There are ${fCount} women waiting to dance`);
       fQ.dequeue();
     }
   }
-  if(mCount > 0){
+  if (mCount > 0) {
     console.log(`There are ${mCount} men waiting to dance`);
   }
 }
 
-const squareDancers = [
-  {gender:'M', name:'bob'},
-  {gender:'M', name:'chris'},
-  {gender:'F', name:'luna'},
-  {gender:'F', name:'sarah'},
-  {gender:'F', name:'hannah'},
-  {gender:'M', name:'geoff'},
-  {gender:'M', name:'larry'}
+const squareDancers = [{
+    gender: 'M',
+    name: 'bob'
+  },
+  {
+    gender: 'M',
+    name: 'chris'
+  },
+  {
+    gender: 'F',
+    name: 'luna'
+  },
+  {
+    gender: 'F',
+    name: 'sarah'
+  },
+  {
+    gender: 'F',
+    name: 'hannah'
+  },
+  {
+    gender: 'M',
+    name: 'geoff'
+  },
+  {
+    gender: 'M',
+    name: 'larry'
+  }
 ];
 
 // dancerMatch(squareDancers);
@@ -205,7 +222,31 @@ const squareDancers = [
 
 
 /// EXERCISE #4 - OPHIDIAN BANK ///
+function bankTeller(peopleQ) {
+  while (peopleQ.first !== null) {
+    const person = peopleQ.dequeue();
+    if (Math.random() <= .25) {
+      peopleQ.enqueue(person);
+      console.log('wrong paperwork');
+    } else {
+      console.log('Right paperwork');
+    }
+  }
+}
 
+const myQ = new Queue;
+myQ.enqueue('sarah');
+myQ.enqueue('james');
+myQ.enqueue('bob');
+myQ.enqueue('Josh');
+myQ.enqueue('marry');
+myQ.enqueue('Trey');
+myQ.enqueue('Janice');
+myQ.enqueue('Jill');
+myQ.enqueue('bret');
+myQ.enqueue('sad');
+
+bankTeller(myQ);
 
 
 // ///// INVOKING AND LOGGING STACK OPERATIONS ////
@@ -236,6 +277,14 @@ const squareDancers = [
 // // console.log('dequeue', myQ.dequeue());
 // // console.log('dequeue', myQ.dequeue());
 // // console.log('dequeue', myQ.dequeue());
+// displayQ(myQ);
+// // console.log(myQ);
+// );
+//
+// );
+//
+// );
+// .log('dequeue', myQ.dequeue());
 // displayQ(myQ);
 // // console.log(myQ);
 // );
