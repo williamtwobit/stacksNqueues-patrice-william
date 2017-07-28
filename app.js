@@ -90,11 +90,11 @@ function displayQ(queue) {
 function isPalindrome(string) {
   string = string.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
   const palindromeStack = new Stack;
-  for(let i = 0; i < string.length; i++){
+  for (let i = 0; i < string.length; i++) {
     palindromeStack.push(string[i]);
   }
-  for(let i = 0; i < string.length; i++){
-    if(!(palindromeStack.pop() === string[i])){
+  for (let i = 0; i < string.length; i++) {
+    if (!(palindromeStack.pop() === string[i])) {
       return false;
     }
   }
@@ -110,18 +110,35 @@ console.log(isPalindrome("1001"));
 
 
 /// EXERCISE #2 - MATCHING PARENTHESES ///
+//const pStack = new Stack;
 
+function mathParens(string) {
+  const pStack = new Stack;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === '(') {
+      pStack.push(i.toString());
+    } else if (string[i] === ')') {
+      try {
+        let open = pStack.pop();
+      } catch (error) {
+        throw new Error(`Missing opener for closer at ${i}`);
+      }
+    }
+  }
+  if (pStack.top !== null) {
+    throw new Error(`Missing closer for opener at ${pStack.top.data}`);
+  } else {
+    console.log('All Good!');
+  }
+}
 
+// const myStack = new Stack;
+// myStack.push('(this is good)');
+// console.log(myStack);
 
-
-
-
-
-
-
-
-
-
+mathParens('((2*5)+6)');
+//mathParens('(not okay))');
+mathParens('((trippin)');
 
 
 
@@ -158,4 +175,9 @@ console.log(isPalindrome("1001"));
 // // console.log('dequeue', myQ.dequeue());
 // // console.log('dequeue', myQ.dequeue());
 // displayQ(myQ);
-// console.log(myQ);
+// // console.log(myQ);
+// );
+//
+// );
+//
+// );
